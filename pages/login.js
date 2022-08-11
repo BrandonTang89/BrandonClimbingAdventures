@@ -18,6 +18,7 @@ export default function Login() {
     }
   });
   useEffect(() => {
+    Router.push('/login');
     var granimInstance = new Granim({
       element: "#canvas-basic",
       direction: "diagonal",
