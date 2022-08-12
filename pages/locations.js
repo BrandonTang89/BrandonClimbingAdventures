@@ -1,12 +1,11 @@
+import { useEffect } from "react";
+import Granim from "granim";
 import Head from "next/head";
 import Link from "next/link";
-import Layout from "../components/layout";
-import styles from "./about.module.css";
-import Granim from "granim";
 import Script from "next/script";
-import { getLocations, getUserClimbs } from "/pages/api/firebase_access";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import Layout from "/components/layout";
+import { getLocations, getUserClimbs } from "/pages/api/firebaseAccess";
+import bgstyles from "/styles/granimBackground.module.css";
 
 export default function Locations({ locations, userClimbs }) {
   const loadMap = () => {
@@ -95,12 +94,12 @@ export default function Locations({ locations, userClimbs }) {
         }}
       ></Script>
       <div>
-        <canvas className={styles.canvasBasic} id="canvas-basic"></canvas>
-        <div className="text-zinc-200 p-10 text-center content-center">
-          <h1 className="text-4xl text-zinc-100 mb-2">
+        <canvas className={bgstyles.canvasBasic} id="canvas-basic"></canvas>
+        <div className="text-zinc-200 p-2 lg:p-10 text-center content-center">
+          <h1 className="text-4xl text-zinc-100 my-6 lg:my-2">
             View Climbing Locations
           </h1>
-          <div className="text-2xl text-zinc-100 mb-2">
+          <div className="text-2xl text-zinc-100 mb-2 hidden lg:grid">
             Use scroll wheel to zoom and arrow keys to pan
           </div>
 

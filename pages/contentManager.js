@@ -1,20 +1,19 @@
+import Granim from "granim";
+import DatePicker from "react-datepicker";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
-import Layout from "../components/layout";
-import styles from "./about.module.css";
-import Script from "next/script";
-import Granim from "granim";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
+import Layout from "/components/layout";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   getLocations,
   getUserClimbs,
   logout,
   addClimb,
   deleteClimb,
-} from "/pages/api/firebase_access";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+} from "/pages/api/firebaseAccess";
+import bgstyles from "/styles/granimBackground.module.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 const auth = getAuth();
@@ -69,6 +68,15 @@ export default function ContentManager({ locations, userClimbs }) {
       return;
     }
 
+    // extract the video ID matching a continuous string of 11 non-special characters
+    console.log("yturl: " + yturl);
+    var videoId = yturl.match(/[^.=/?]{11}/);
+    if (videoId == null) {
+      alert("Please enter a valid youtube url");
+      return;
+    }
+    videoId = videoId[0];
+    yturl = "https://www.youtube.com/watch?v=" + videoId;
     console.log(newlocationid, grade, type, selectedDate, yturl);
 
     try {
@@ -105,7 +113,7 @@ export default function ContentManager({ locations, userClimbs }) {
         <title>CMS</title>
       </Head>
       <div>
-        <canvas className={styles.canvasBasic} id="canvas-basic"></canvas>
+        <canvas className={bgstyles.canvasBasic} id="canvas-basic"></canvas>
         <div className="text-zinc-200 p-10 text-center content-center">
           <h1 className="text-4xl text-zinc-100 mb-2">Content Manager</h1>
           <button
@@ -125,7 +133,11 @@ export default function ContentManager({ locations, userClimbs }) {
                 Choose a Location
               </option>
               {locations.map((location) => {
-                return <option key={location.id} value={location.name}>{location.name}</option>;
+                return (
+                  <option key={location.id} value={location.name}>
+                    {location.name}
+                  </option>
+                );
               })}
             </select>
             <select
@@ -188,7 +200,12 @@ export default function ContentManager({ locations, userClimbs }) {
               className="max-w-md mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
               {userClimbs.map((climb) => {
-                return <option key={climb.id} value={climb.id}>{climb.id} - {climb.location} - {climb.grade} - {climb.type} - {climb.date}</option>;
+                return (
+                  <option key={climb.id} value={climb.id}>
+                    {climb.id} - {climb.location} - {climb.grade} - {climb.type}{" "}
+                    - {climb.date}
+                  </option>
+                );
               })}
             </select>
           </form>

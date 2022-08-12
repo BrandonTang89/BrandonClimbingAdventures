@@ -1,10 +1,10 @@
+import { useEffect } from "react";
+import Granim from "granim";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import Layout from "../components/layout";
-import styles from "./about.module.css";
-import Granim from "granim";
-import { useEffect } from "react";
+import Layout from "/components/layout";
+import bgstyles from "/styles/granimBackground.module.css";
 export default function About() {
   useEffect(() => {
     var granimInstance = new Granim({
@@ -29,7 +29,7 @@ export default function About() {
         <title>About Brandon</title>
       </Head>
       <div>
-        <canvas className={styles.canvasBasic} id="canvas-basic"></canvas>
+        <canvas className={bgstyles.canvasBasic} id="canvas-basic"></canvas>
         <div className="text-zinc-200 p-10 text-center content-center">
           <h1 className="text-4xl text-zinc-100 mb-2">About Brandon</h1>
 

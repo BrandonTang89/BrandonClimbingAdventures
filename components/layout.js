@@ -1,13 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
-import styles from "./layout.module.css";
 export default function Layout({ children }) {
   return (
     <div>
       <Head>
         <meta name="description" content="Brandon's Climbing Adventures" />
       </Head>
-      <div className="bg-amber-700 flex flex-row">
+      <div className="bg-amber-700 flex flex-wrap">
         <div className="text-3xl text-zinc-300 mx-4 my-3 font-bold">
           <Link href="/"> Brandon&apos;s Climbing Adventures</Link>
         </div>
