@@ -97,7 +97,7 @@ export default function ClimbByLocation({ locations, userClimbs }) {
                   </p>
                   <p>Date: {formatDate(climb.date)}</p>
                   <p>Grade: {climb.grade}</p>
-                  <p>
+                  <p className="truncate px-1">
                     URL:{" "}
                     <a
                       href={climb.yturl}
