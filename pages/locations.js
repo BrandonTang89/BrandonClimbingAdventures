@@ -70,7 +70,6 @@ export default function Locations({ locations, userClimbs }) {
       loadMap();
     }
   }, []);
-  //https://cdnjs.cloudflare.com/ajax/libs/granim/2.0.0/granim.min.js
   return (
     <Layout>
       <Head>
