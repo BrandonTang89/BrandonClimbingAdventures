@@ -34,10 +34,7 @@ export default function Home() {
           <Link href="/locations">
             <a className={styles.card}>
               <h2>Explore by Location! &rarr;</h2>
-              <p>
-                Select a climbing gym and view Brandon&apos;s opinions and
-                climbs!
-              </p>
+              <p>Select a climbing gym and view Brandon&apos;s climbs!</p>
             </a>
           </Link>
         </div>

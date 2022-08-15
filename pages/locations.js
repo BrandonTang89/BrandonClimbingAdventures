@@ -31,21 +31,20 @@ export default function Locations({ locations, userClimbs }) {
     });
 
     locations.forEach((element) => {
-      if (!(element.name in climbsbylocation)) {
-        climbsbylocation[element.name] = [];
+      if (element.name in climbsbylocation) {
+        L.marker([element.position[0], element.position[1]])
+          .addTo(map)
+          .bindPopup(
+            "<p>Location Name: <b>" +
+              element.name +
+              " </b></p> <p>Number of Climbs: <b>" +
+              climbsbylocation[element.name].length +
+              "</b></p>" +
+              " <a href='/climbs/" +
+              element.id +
+              "'>View Climbs</a>"
+          );
       }
-      L.marker([element.position[0], element.position[1]])
-        .addTo(map)
-        .bindPopup(
-          "<p>Gym Name: <b>" +
-            element.name +
-            " </b></p> <p>Number of Climbs: <b>" +
-            climbsbylocation[element.name].length +
-            "</b></p>" +
-            " <a href='/climbs/" +
-            element.id +
-            "'>View Climbs</a>"
-        );
     });
   };
   useEffect(() => {
@@ -77,7 +76,6 @@ export default function Locations({ locations, userClimbs }) {
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-
         />
       </Head>
       <Script

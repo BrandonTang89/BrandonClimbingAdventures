@@ -33,7 +33,7 @@ export default function Login() {
         },
       },
     });
-  }, []);
+  }, [router]);
   return (
     <Layout>
       <Head>
