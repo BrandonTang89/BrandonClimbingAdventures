@@ -1,34 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Climbing Adventures
+This is a project that is used to showcase rock climbing videos by location.
 
-## Getting Started
+The front-end uses [next.js](https://nextjs.org/) as well as [tailwindcss](https://tailwindcss.com/) while we use [firebase](https://console.firebase.google.com/) for authentication and database work.
 
-First, run the development server:
+# Site Structure
+- `/` index page is the home page
+- `/locations` shows a map powered by [leaflet.js](https://leafletjs.com/) that shows the gyms that the user climbs at
+- `/climbs/{locationID}` shows a grid of videos of all the climbs that have taken place at that location
+- `/login` allows for signing into the content management system
+- `/contentManager` is the actual CMS for adding climbs.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+> Note that currently, there is not point in adding climbs if you are not me as the site only shows climbs under my user
