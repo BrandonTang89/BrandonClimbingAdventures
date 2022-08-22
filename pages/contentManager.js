@@ -17,16 +17,18 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const auth = getAuth();
 
-
-
 export default function ContentManager({ locations, userClimbs }) {
   const router = useRouter();
-  onAuthStateChanged(auth, (user) => {
-    console.log("auth change");
-    if (!user) {
-      router.replace("/login");
-    }
-  });
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log("auth change");
+      if (!user) {
+        router.replace("/login");
+      }
+    });
+  }, [router]);
+
   const [removeClimbId, setRemoveClimbId] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [newlocationid, setNewLocationId] = useState("");
@@ -34,7 +36,6 @@ export default function ContentManager({ locations, userClimbs }) {
   const [type, setType] = useState("");
   const [yturl, setYturl] = useState("");
 
- 
   useEffect(() => {}, []);
 
   const uploadClimb = () => {

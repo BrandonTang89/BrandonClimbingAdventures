@@ -11,12 +11,12 @@ const auth = getAuth();
 
 export default function Login() {
   const router = useRouter();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      router.push("/contentManager");
-    }
-  });
   useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.push("/contentManager");
+      }
+    });
   }, [router]);
   return (
     <Layout>
