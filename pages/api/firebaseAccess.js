@@ -91,13 +91,13 @@ export const getUserClimbs = async () => {
   var climblist = [];
   await Promise.all(
     doclist.map(async (doc) => {
-      console.log("doc: ", doc.id);
+      // console.log("doc: ", doc.id);
       const climbsSnapShot = await getDocs(
         collection(db, "UserClimbs/" + doc.id + "/Climbs")
       );
       climbsSnapShot.forEach((climb) => {
-        console.log("climb: ", climb.data());
-        console.log("date: ", climb.data().date.toDate().toString());
+        // console.log("climb: ", climb.data());
+        // console.log("date: ", climb.data().date.toDate().toString());
         climblist.push({
           id: climb.id,
           location: climb.data().location,
@@ -110,7 +110,7 @@ export const getUserClimbs = async () => {
     })
   );
 
-  console.log("climblist: ", climblist);
+  // console.log("climblist: ", climblist);
 
   return climblist;
 };

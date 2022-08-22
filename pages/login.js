@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Granim from "granim";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -14,30 +13,15 @@ export default function Login() {
   const router = useRouter();
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      router.replace("/contentManager");
+      router.push("/contentManager");
     }
   });
   useEffect(() => {
-    router.push('/login');
-    var granimInstance = new Granim({
-      element: "#canvas-basic",
-      direction: "diagonal",
-      isPausedWhenNotInView: true,
-      states: {
-        "default-state": {
-          gradients: [
-            ["#4e5713", "#57132c"],
-            ["#574213", "#571b13"],
-            ["#3e5713", "#134a57"],
-          ],
-        },
-      },
-    });
   }, [router]);
   return (
     <Layout>
       <Head>
-        <title>About Brandon</title>
+        <title>Login to CMS</title>
       </Head>
       <div>
         <canvas className={bgstyles.canvasBasic} id="canvas-basic"></canvas>

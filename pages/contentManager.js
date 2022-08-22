@@ -1,4 +1,3 @@
-import Granim from "granim";
 import DatePicker from "react-datepicker";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -18,37 +17,25 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const auth = getAuth();
 
+
+
 export default function ContentManager({ locations, userClimbs }) {
   const router = useRouter();
+  onAuthStateChanged(auth, (user) => {
+    console.log("auth change");
+    if (!user) {
+      router.replace("/login");
+    }
+  });
   const [removeClimbId, setRemoveClimbId] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [newlocationid, setNewLocationId] = useState("");
   const [grade, setGrade] = useState("");
   const [type, setType] = useState("");
   const [yturl, setYturl] = useState("");
 
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      router.replace("/login");
-    }
-  });
-  useEffect(() => {
-    var granimInstance = new Granim({
-      element: "#canvas-basic",
-      direction: "diagonal",
-      isPausedWhenNotInView: true,
-      states: {
-        "default-state": {
-          gradients: [
-            ["#4e5713", "#57132c"],
-            ["#574213", "#571b13"],
-            ["#3e5713", "#134a57"],
-          ],
-        },
-      },
-    });
-  }, []);
+ 
+  useEffect(() => {}, []);
 
   const uploadClimb = () => {
     if (newlocationid.length == 0) {
@@ -126,12 +113,11 @@ export default function ContentManager({ locations, userClimbs }) {
           <form className="grid place-items-center">
             <select
               id="location"
+              defaultValue=""
               onChange={(e) => setNewLocationId(e.target.value)}
               className="max-w-md mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option value="" selected>
-                Choose a Location
-              </option>
+              <option value="">Choose a Location</option>
               {locations.map((location) => {
                 return (
                   <option key={location.id} value={location.name}>
@@ -143,11 +129,10 @@ export default function ContentManager({ locations, userClimbs }) {
             <select
               id="type"
               onChange={(e) => setType(e.target.value)}
+              defaultValue=""
               className="max-w-md mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option value="" selected>
-                Type of Climb
-              </option>
+              <option value="">Type of Climb</option>
               <option value="Boulder">Boulder</option>
               <option value="Top Rope">Top Rope</option>
               <option value="Autobelay">Autobelay</option>
@@ -169,7 +154,7 @@ export default function ContentManager({ locations, userClimbs }) {
               </label>
               <DatePicker
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                selected={startDate}
+                selected={selectedDate}
                 onChange={(date) => setSelectedDate(date)}
               />
             </div>
